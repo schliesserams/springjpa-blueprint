@@ -23,7 +23,7 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 
 @Entity
 @Table(name = "grade", indexes = {
-    @Index(name = "unique_grade_index", columnList = "subject_id, pupil_id"),
+    @Index(name = "unique_grade_index", columnList = "clazz_id, student_id"),
 })
 @Getter
 @Setter
@@ -37,11 +37,12 @@ public class Grade extends BaseEntity {
     private BigDecimal gradeValue;
 
     @ManyToOne(fetch = LAZY, optional = false)
-    private Pupil pupil;
+    @JoinColumn(name = "student_id", nullable = false)
+    private Student student;
 
     @ManyToOne(fetch = LAZY, optional = false)
-    @JoinColumn(name = "subject_id", nullable = false)
-    private Subject subject;
+    @JoinColumn(name = "clazz_id", nullable = false)
+    private Clazz clazz;
 
     @Override
     public int hashCode() {

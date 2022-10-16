@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotEmpty;
+import java.io.Serial;
 import java.io.Serializable;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
@@ -18,7 +21,12 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(value = NON_NULL)
-public class CreateHeadTeacherDto implements Serializable {
+@Validated
+public class CreateClazzRequest implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @NotEmpty
     @JsonProperty(value = "name", required = true)
     private String name;
 }

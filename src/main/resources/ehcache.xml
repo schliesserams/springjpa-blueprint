@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns='http://www.ehcache.org/v3'>
+    <cache alias="com.ams.jpa.model.entity.Student">
+        <resources>
+            <heap>100</heap>
+        </resources>
+    </cache>
+    <cache alias="com.ams.jpa.model.entity.Grade">
+        <resources>
+            <heap>100</heap>
+        </resources>
+    </cache>
+    <cache alias="com.ams.jpa.model.entity.HeadTeacher">
+        <resources>
+            <heap>100</heap>
+        </resources>
+    </cache>
+    <cache alias="com.ams.jpa.model.entity.Clazz">
+        <resources>
+            <heap>100</heap>
+        </resources>
+    </cache>
+</config>

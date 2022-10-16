@@ -17,7 +17,7 @@ import static java.util.Objects.hash;
 import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 
 @Entity
-@Table(name = "subject")
+@Table(name = "clazz")
 @Getter
 @Setter
 @Builder
@@ -25,7 +25,7 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 @NoArgsConstructor
 @Cacheable
 @Cache(usage = READ_WRITE)
-public class Subject extends BaseEntity {
+public class Clazz extends BaseEntity {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
@@ -36,7 +36,7 @@ public class Subject extends BaseEntity {
 
     @Override
     public boolean equals(final Object object) {
-        return object instanceof Subject s && this.id.equals(s.id);
+        return object instanceof Clazz s && this.id.equals(s.id);
     }
 
     @Override

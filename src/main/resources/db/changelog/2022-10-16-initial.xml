@@ -17,9 +17,9 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="subject">
+        <createTable tableName="clazz">
             <column name="id" type="VARCHAR(36)">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="subject_pkey"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="clazz_pkey"/>
             </column>
             <column name="create_date" type="DATETIME">
                 <constraints nullable="false"/>
@@ -41,17 +41,17 @@
             <column name="modify_date" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
-            <column name="subject_id" type="VARCHAR(36)">
+            <column name="clazz_id" type="VARCHAR(36)">
                 <constraints nullable="false"/>
             </column>
-            <column name="pupil_id" type="VARCHAR(36)">
+            <column name="student_id" type="VARCHAR(36)">
                 <constraints nullable="false"/>
             </column>
             <column name="grade_value" type="DECIMAL">
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <createTable tableName="pupil">
+        <createTable tableName="student">
             <column name="id" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="pupil_pkey"/>
             </column>
@@ -59,9 +59,6 @@
                 <constraints nullable="false"/>
             </column>
             <column name="last_name" type="VARCHAR(255)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="status" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="create_date" type="DATETIME">
@@ -76,17 +73,18 @@
         </createTable>
     </changeSet>
     <changeSet author="Schliesser" id="2">
-        <addUniqueConstraint columnNames="name" tableName="headteacher" constraintName="subject_name_unique_index" />
-        <addUniqueConstraint columnNames="name" tableName="subject" constraintName="subject_name_unique_index" />
-        <addUniqueConstraint columnNames="subject_id, pupil_id" tableName="grade" constraintName="unique_grade_index" />
+        <addUniqueConstraint columnNames="name" tableName="headteacher" constraintName="headteacher_name_unique_index" />
+        <addUniqueConstraint columnNames="name" tableName="clazz" constraintName="clazz_name_unique_index" />
+        <addUniqueConstraint columnNames="clazz_id, student_id" tableName="grade" constraintName="unique_grade_index" />
+        <addUniqueConstraint columnNames="last_name, first_name" tableName="student" constraintName="unique_name_index" />
 
-        <addForeignKeyConstraint baseColumnNames="subject_id" baseTableName="grade" constraintName="grade_subject_fkey"
+        <addForeignKeyConstraint baseColumnNames="clazz_id" baseTableName="grade" constraintName="grade_clazz_fkey"
                                  onDelete="NO ACTION" onUpdate="NO ACTION"
-                                 referencedColumnNames="id" referencedTableName="subject" validate="true"/>
-        <addForeignKeyConstraint baseColumnNames="pupil_id" baseTableName="grade" constraintName="grade_pupil_fkey"
+                                 referencedColumnNames="id" referencedTableName="clazz" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="student_id" baseTableName="grade" constraintName="grade_pupil_fkey"
                                  onDelete="NO ACTION" onUpdate="NO ACTION"
-                                 referencedColumnNames="id" referencedTableName="pupil" validate="true"/>
-        <addForeignKeyConstraint baseColumnNames="headteacher_id" baseTableName="pupil" constraintName="pupil_headteacher_fkey"
+                                 referencedColumnNames="id" referencedTableName="student" validate="true"/>
+        <addForeignKeyConstraint baseColumnNames="headteacher_id" baseTableName="student" constraintName="pupil_headteacher_fkey"
                                  onDelete="NO ACTION" onUpdate="NO ACTION"
                                  referencedColumnNames="id" referencedTableName="headteacher" validate="true"/>
     </changeSet>

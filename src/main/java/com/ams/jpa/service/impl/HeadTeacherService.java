@@ -1,7 +1,9 @@
 package com.ams.jpa.service.impl;
 
+import com.ams.jpa.component.mapper.HeadTeacherMapper;
+import com.ams.jpa.model.dto.HeadTeacherDto;
 import com.ams.jpa.model.entity.HeadTeacher;
-import com.ams.jpa.model.rest.request.CreateHeadTeacherDto;
+import com.ams.jpa.model.rest.request.CreateHeadTeacherRequest;
 import com.ams.jpa.repository.HeadTeacherRepository;
 import com.ams.jpa.service.IHeadTeacherService;
 import lombok.NonNull;
@@ -16,28 +18,34 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class HeadTeacherService implements IHeadTeacherService {
     private final HeadTeacherRepository headTeacherRepository;
+    private final HeadTeacherMapper mapper;
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull List<HeadTeacher> findAll() {
-        return headTeacherRepository.findAll();
+    public @NonNull List<HeadTeacherDto> findAll() {
+        return headTeacherRepository.findAll().stream()
+                .map(mapper::asDto).toList();
     }
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull Optional<HeadTeacher> findById(@NonNull String id) {
-        return headTeacherRepository.findById(id);
+    public @NonNull Optional<HeadTeacherDto> findById(@NonNull String id) {
+        return headTeacherRepository.findById(id)
+                .map(mapper::asDto);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull Optional<HeadTeacher> findByName(@NonNull String name) {
-        return headTeacherRepository.findByName(name);
+    public @NonNull Optional<HeadTeacherDto> findByName(@NonNull String name) {
+        return headTeacherRepository.findByName(name)
+                .map(mapper::asDto);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public @NonNull HeadTeacher create(@NonNull CreateHeadTeacherDto createHeadTeacher) {
-        return headTeacherRepository.save(HeadTeacher.builder().name(createHeadTeacher.getName()).build());
+    public @NonNull HeadTeacherDto create(@NonNull CreateHeadTeacherRequest headTeacher) {
+        return mapper.asDto(headTeacherRepository.save(HeadTeacher.builder()
+                .name(headTeacher.getName())
+                .build()));
     }
 }
