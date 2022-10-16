@@ -11,8 +11,12 @@ import java.util.Optional;
 
 public interface IStudentService {
     @NonNull List<StudentDto> findAll();
+
     @NonNull StudentDto create(@NonNull CreateStudentRequest createStudent);
+
     @NonNull Optional<StudentDto> findById(@NonNull String id);
+
     @NonNull StudentDto addGrade(@NonNull String id, @NonNull String clazzId, @NonNull BigDecimal grade);
+
     @NonNull List<GradeDto> getGrades(@NonNull String id);
 }

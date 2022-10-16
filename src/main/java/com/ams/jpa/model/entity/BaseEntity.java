@@ -37,7 +37,7 @@ public class BaseEntity {
 
     @PrePersist
     protected void onPrePersist() {
-        if(createDate == null) {
+        if (createDate == null) {
             createDate = ZonedDateTime.now(UTC);
         }
         modifyDate = createDate;

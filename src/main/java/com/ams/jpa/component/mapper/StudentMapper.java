@@ -14,6 +14,7 @@ import java.util.List;
 public interface StudentMapper {
     @Mapping(source = "headTeacher", target = "headTeacherDto")
     @NonNull StudentDto asDto(@NonNull Student student);
+
     @NonNull List<StudentDto> asDto(@NonNull Collection<Student> students);
 
     @Mapping(source = "headTeacherDto", target = "headTeacher")

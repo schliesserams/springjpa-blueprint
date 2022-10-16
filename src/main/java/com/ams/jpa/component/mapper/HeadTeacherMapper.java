@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface HeadTeacherMapper {
     @NonNull HeadTeacherDto asDto(@NonNull HeadTeacher headTeacher);
+
     @NonNull List<HeadTeacherDto> asDto(@NonNull Collection<HeadTeacher> headTeacher);
 
     @NonNull HeadTeacherResponse asResponse(@NonNull HeadTeacherDto headTeacher);

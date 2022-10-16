@@ -38,9 +38,9 @@ public class StudentService implements IStudentService {
         final HeadTeacher headTeacher = headTeacherRepository.findById(createStudent.getHeadTeacherId())
                 .orElseThrow(EntityNotFoundException::new);
         return mapper.asDto(studentRepository.save(Student.builder()
-                        .firstname(createStudent.getFirstName())
-                        .lastname(createStudent.getLastName())
-                        .headTeacher(headTeacher)
+                .firstname(createStudent.getFirstName())
+                .lastname(createStudent.getLastName())
+                .headTeacher(headTeacher)
                 .build()));
     }
 

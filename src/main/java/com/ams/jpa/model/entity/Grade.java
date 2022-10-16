@@ -23,7 +23,7 @@ import static org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE;
 
 @Entity
 @Table(name = "grade", indexes = {
-    @Index(name = "unique_grade_index", columnList = "clazz_id, student_id"),
+        @Index(name = "unique_grade_index", columnList = "clazz_id, student_id"),
 })
 @Getter
 @Setter

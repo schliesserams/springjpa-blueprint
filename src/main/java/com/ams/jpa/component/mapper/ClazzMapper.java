@@ -12,6 +12,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ClazzMapper {
     @NonNull ClazzDto asDto(@NonNull Clazz clazz);
+
     @NonNull List<ClazzDto> asDto(@NonNull Collection<Clazz> clazzes);
 
     @NonNull ClazzResponse asResponse(@NonNull ClazzDto clazz);

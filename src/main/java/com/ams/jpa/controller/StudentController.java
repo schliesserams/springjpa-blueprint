@@ -75,6 +75,7 @@ public class StudentController {
         studentService.addGrade(id, clazzId, grade);
         return ResponseEntity.accepted().build();
     }
+
     @Operation(summary = "Gets the grades of a student")
     @ApiResponse(responseCode = "200", description = "The grades")
     @ApiResponse(responseCode = "404", description = "The student not found")
