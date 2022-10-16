@@ -29,7 +29,7 @@ public class StudentService implements IStudentService {
     private final StudentRepository studentRepository;
     private final HeadTeacherRepository headTeacherRepository;
     private final ClazzRepository clazzRepository;
-    private final StudentMapper mapper;
+    private final StudentMapper studentMapper;
     private final GradeMapper gradeMapper;
 
     @Transactional
@@ -37,7 +37,7 @@ public class StudentService implements IStudentService {
     public @NonNull StudentDto create(@NonNull CreateStudentRequest createStudent) {
         final HeadTeacher headTeacher = headTeacherRepository.findById(createStudent.getHeadTeacherId())
                 .orElseThrow(EntityNotFoundException::new);
-        return mapper.asDto(studentRepository.save(Student.builder()
+        return studentMapper.asDto(studentRepository.save(Student.builder()
                 .firstname(createStudent.getFirstName())
                 .lastname(createStudent.getLastName())
                 .headTeacher(headTeacher)
@@ -48,14 +48,14 @@ public class StudentService implements IStudentService {
     @Override
     public @NonNull Optional<StudentDto> findById(@NonNull String id) {
         return studentRepository.findById(id)
-                .map(mapper::asDto);
+                .map(studentMapper::asDto);
     }
 
     @Transactional(readOnly = true)
     @Override
     public @NonNull List<StudentDto> findAll() {
         return studentRepository.findAll()
-                .stream().map(mapper::asDto).toList();
+                .stream().map(studentMapper::asDto).toList();
     }
 
     @Transactional(readOnly = true)
@@ -77,6 +77,6 @@ public class StudentService implements IStudentService {
         grade.setStudent(student);
         grade.setClazz(clazz);
         student.getGrades().add(grade);
-        return mapper.asDto(studentRepository.save(student));
+        return studentMapper.asDto(studentRepository.save(student));
     }
 }
