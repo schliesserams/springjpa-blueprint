@@ -32,7 +32,7 @@ public class StudentService implements IStudentService {
     private final StudentMapper studentMapper;
     private final GradeMapper gradeMapper;
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public @NonNull StudentDto create(@NonNull CreateStudentRequest createStudent) {
         final HeadTeacher headTeacher = headTeacherRepository.findById(createStudent.getHeadTeacherId())
