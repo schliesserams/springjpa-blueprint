@@ -38,6 +38,7 @@ public class HeadTeacherController {
 
     @Operation(summary = "Creates a head teacher")
     @ApiResponse(responseCode = "200", description = "The created head teacher")
+    @ApiResponse(responseCode = "400", description = "The request is not valid")
     @ApiResponse(responseCode = "409", description = "A head teacher with that name already exists")
     @ApiResponse(responseCode = "500", description = "A server error")
     @PostMapping(value = "/headteacher", produces = APPLICATION_JSON_VALUE)

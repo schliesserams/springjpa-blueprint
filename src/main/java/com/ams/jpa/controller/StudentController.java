@@ -46,6 +46,7 @@ public class StudentController {
 
     @Operation(summary = "Creates a student")
     @ApiResponse(responseCode = "200", description = "The created student")
+    @ApiResponse(responseCode = "400", description = "The request is not valid")
     @ApiResponse(responseCode = "404", description = "The head teacher was not found")
     @ApiResponse(responseCode = "500", description = "A server error")
     @PostMapping(value = "/student", produces = APPLICATION_JSON_VALUE)
@@ -65,6 +66,7 @@ public class StudentController {
 
     @Operation(summary = "Add a grade for a student")
     @ApiResponse(responseCode = "202", description = "The grade was added")
+    @ApiResponse(responseCode = "400", description = "The request is not valid")
     @ApiResponse(responseCode = "404", description = "The student or clazz  was not found")
     @ApiResponse(responseCode = "500", description = "A server error")
     @PostMapping(value = "/student/{id}/grade/{clazzId}/{grade}", produces = APPLICATION_JSON_VALUE)

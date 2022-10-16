@@ -38,6 +38,7 @@ public class ClazzController {
 
     @Operation(summary = "Creates a clazz")
     @ApiResponse(responseCode = "200", description = "The created clazz")
+    @ApiResponse(responseCode = "400", description = "The request is not valid")
     @ApiResponse(responseCode = "409", description = "A clazz with that name already exists")
     @ApiResponse(responseCode = "500", description = "A server error")
     @PostMapping(value = "/clazz", produces = APPLICATION_JSON_VALUE)
