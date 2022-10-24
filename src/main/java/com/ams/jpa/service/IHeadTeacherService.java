@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IHeadTeacherService {
-    @NonNull List<HeadTeacherDto> findAll();
+    @NonNull List<HeadTeacherDto> getAll();
 
-    @NonNull Optional<HeadTeacherDto> findById(@NonNull String id);
+    @NonNull Optional<HeadTeacherDto> getById(@NonNull String id);
 
-    @NonNull Optional<HeadTeacherDto> findByName(@NonNull String name);
+    @NonNull Optional<HeadTeacherDto> getByName(@NonNull String name);
 
     @NonNull HeadTeacherDto create(@NonNull CreateHeadTeacherRequest headTeacher);
 }

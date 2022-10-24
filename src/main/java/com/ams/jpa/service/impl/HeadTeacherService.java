@@ -22,21 +22,21 @@ public class HeadTeacherService implements IHeadTeacherService {
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull List<HeadTeacherDto> findAll() {
+    public @NonNull List<HeadTeacherDto> getAll() {
         return headTeacherRepository.findAll().stream()
                 .map(mapper::asDto).toList();
     }
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull Optional<HeadTeacherDto> findById(@NonNull String id) {
+    public @NonNull Optional<HeadTeacherDto> getById(@NonNull String id) {
         return headTeacherRepository.findById(id)
                 .map(mapper::asDto);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull Optional<HeadTeacherDto> findByName(@NonNull String name) {
+    public @NonNull Optional<HeadTeacherDto> getByName(@NonNull String name) {
         return headTeacherRepository.findByName(name)
                 .map(mapper::asDto);
     }

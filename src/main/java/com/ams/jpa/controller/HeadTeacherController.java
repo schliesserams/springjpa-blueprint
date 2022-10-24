@@ -52,7 +52,7 @@ public class HeadTeacherController {
     @ApiResponse(responseCode = "500", description = "A server error")
     @GetMapping(value = "/headteacher/{id}", produces = APPLICATION_JSON_VALUE)
     public @NonNull ResponseEntity<HeadTeacherResponse> findById(@NonNull @PathVariable String id) {
-        return ResponseEntity.ok(mapper.asResponse(headTeacherService.findById(id)
+        return ResponseEntity.ok(mapper.asResponse(headTeacherService.getById(id)
                 .orElseThrow(EntityNotFoundException::new)));
     }
 
@@ -62,7 +62,7 @@ public class HeadTeacherController {
     @ApiResponse(responseCode = "500", description = "A server error")
     @GetMapping(value = "/headteacher/name/{name}", produces = APPLICATION_JSON_VALUE)
     public @NonNull ResponseEntity<HeadTeacherResponse> findByName(@NonNull @PathVariable String name) {
-        return ResponseEntity.ok(mapper.asResponse(headTeacherService.findByName(name)
+        return ResponseEntity.ok(mapper.asResponse(headTeacherService.getByName(name)
                 .orElseThrow(EntityNotFoundException::new)));
     }
 
@@ -70,6 +70,6 @@ public class HeadTeacherController {
     @ApiResponse(responseCode = "200", description = "The head teachers")
     @GetMapping(value = "/headteachers", produces = APPLICATION_JSON_VALUE)
     public @NonNull ResponseEntity<List<HeadTeacherResponse>> findAll() {
-        return ResponseEntity.ok(mapper.asResponse(headTeacherService.findAll()));
+        return ResponseEntity.ok(mapper.asResponse(headTeacherService.getAll()));
     }
 }

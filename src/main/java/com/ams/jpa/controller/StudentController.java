@@ -60,7 +60,7 @@ public class StudentController {
     @ApiResponse(responseCode = "500", description = "A server error")
     @GetMapping(value = "/student/{id}", produces = APPLICATION_JSON_VALUE)
     public @NonNull ResponseEntity<StudentResponse> findById(@NonNull @PathVariable String id) {
-        return ResponseEntity.ok(studentMapper.asResponse(studentService.findById(id)
+        return ResponseEntity.ok(studentMapper.asResponse(studentService.getById(id)
                 .orElseThrow(EntityNotFoundException::new)));
     }
 
@@ -92,6 +92,6 @@ public class StudentController {
     @ApiResponse(responseCode = "200", description = "The students")
     @GetMapping(value = "/students", produces = APPLICATION_JSON_VALUE)
     public @NonNull ResponseEntity<List<StudentResponse>> findAll() {
-        return ResponseEntity.ok(studentMapper.asResponse(studentService.findAll()));
+        return ResponseEntity.ok(studentMapper.asResponse(studentService.getAll()));
     }
 }

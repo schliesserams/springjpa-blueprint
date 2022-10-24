@@ -46,14 +46,14 @@ public class StudentService implements IStudentService {
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull Optional<StudentDto> findById(@NonNull String id) {
+    public @NonNull Optional<StudentDto> getById(@NonNull String id) {
         return studentRepository.findById(id)
                 .map(studentMapper::asDto);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public @NonNull List<StudentDto> findAll() {
+    public @NonNull List<StudentDto> getAll() {
         return studentRepository.findAll()
                 .stream().map(studentMapper::asDto).toList();
     }

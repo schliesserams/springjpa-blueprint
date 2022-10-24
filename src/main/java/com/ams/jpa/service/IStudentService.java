@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IStudentService {
-    @NonNull List<StudentDto> findAll();
+    @NonNull List<StudentDto> getAll();
 
     @NonNull StudentDto create(@NonNull CreateStudentRequest createStudent);
 
-    @NonNull Optional<StudentDto> findById(@NonNull String id);
+    @NonNull Optional<StudentDto> getById(@NonNull String id);
 
     @NonNull StudentDto addGrade(@NonNull String id, @NonNull String clazzId, @NonNull BigDecimal grade);
 
