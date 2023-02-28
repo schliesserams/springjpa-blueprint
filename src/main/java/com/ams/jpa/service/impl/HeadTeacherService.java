@@ -8,6 +8,7 @@ import com.ams.jpa.repository.HeadTeacherRepository;
 import com.ams.jpa.service.IHeadTeacherService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class HeadTeacherService implements IHeadTeacherService {
     private final HeadTeacherRepository headTeacherRepository;
@@ -23,6 +25,7 @@ public class HeadTeacherService implements IHeadTeacherService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull List<HeadTeacherDto> getAll() {
+        LOG.info("Getting all HeadTeachers...");
         return headTeacherRepository.findAll().stream()
                 .map(mapper::asDto).toList();
     }
@@ -30,6 +33,7 @@ public class HeadTeacherService implements IHeadTeacherService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull Optional<HeadTeacherDto> getById(@NonNull String id) {
+        LOG.info("Getting HeadTeacher by Id {}...", id);
         return headTeacherRepository.findById(id)
                 .map(mapper::asDto);
     }
@@ -37,6 +41,7 @@ public class HeadTeacherService implements IHeadTeacherService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull Optional<HeadTeacherDto> getByName(@NonNull String name) {
+        LOG.info("Getting HeadTeacher by Name {}...", name);
         return headTeacherRepository.findByName(name)
                 .map(mapper::asDto);
     }
@@ -44,6 +49,7 @@ public class HeadTeacherService implements IHeadTeacherService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public @NonNull HeadTeacherDto create(@NonNull CreateHeadTeacherRequest headTeacher) {
+        LOG.info("Creating HeadTeacher {}...", headTeacher);
         return mapper.asDto(headTeacherRepository.save(HeadTeacher.builder()
                 .name(headTeacher.getName())
                 .build()));

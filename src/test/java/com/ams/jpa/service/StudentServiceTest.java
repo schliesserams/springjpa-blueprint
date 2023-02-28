@@ -13,6 +13,7 @@ import com.ams.jpa.model.entity.Clazz;
 import com.ams.jpa.model.entity.HeadTeacher;
 import com.ams.jpa.model.rest.request.CreateStudentRequest;
 import com.ams.jpa.repository.ClazzRepository;
+import com.ams.jpa.repository.GradeRepository;
 import com.ams.jpa.repository.HeadTeacherRepository;
 import com.ams.jpa.repository.StudentRepository;
 import com.ams.jpa.service.impl.StudentService;
@@ -37,6 +38,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @DataJpaTest
 @Slf4j
 public class StudentServiceTest {
+    @Autowired
+    private GradeRepository gradeRepository;
+
     @TestConfiguration
     static class TestConfig {
         @Bean
@@ -74,7 +78,7 @@ public class StudentServiceTest {
 
     @BeforeEach
     public void setup() {
-        studentService = new StudentService(studentRepository, headTeacherRepository, clazzRepository, studentMapper, gradeMapper);
+        studentService = new StudentService(gradeRepository, studentRepository, headTeacherRepository, clazzRepository, studentMapper, gradeMapper);
         studentRepository.deleteAll();
 
         if(headTeacherId == null) {

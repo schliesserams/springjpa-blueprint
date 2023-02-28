@@ -8,6 +8,7 @@ import com.ams.jpa.repository.ClazzRepository;
 import com.ams.jpa.service.IClazzService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class ClazzService implements IClazzService {
     private final ClazzRepository clazzRepository;
@@ -29,6 +31,7 @@ public class ClazzService implements IClazzService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull List<ClazzDto> getAll() {
+        LOG.info("Getting all Clazzes...");
         return clazzRepository.findAll().stream()
                 .map(mapper::asDto).toList();
     }
@@ -36,6 +39,7 @@ public class ClazzService implements IClazzService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull Optional<ClazzDto> getById(@NonNull String id) {
+        LOG.info("Getting Clazz by Id {}...", id);
         return clazzRepository.findById(id)
                 .map(mapper::asDto);
     }
@@ -43,6 +47,7 @@ public class ClazzService implements IClazzService {
     @Transactional(readOnly = true)
     @Override
     public @NonNull Optional<ClazzDto> getByName(@NonNull String name) {
+        LOG.info("Getting Clazz by Name {}...", name);
         return clazzRepository.findByName(name)
                 .map(mapper::asDto);
     }
